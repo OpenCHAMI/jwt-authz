@@ -1,5 +1,7 @@
 package issuer
 
+import "fmt"
+
 type APIKey struct {
 	APIKeyID  string
 	APISecret string
@@ -30,6 +32,10 @@ func (apikey *APIKey) AddRole(role Role) {
 	apikey.Roles = append(apikey.Roles, role)
 }
 
+func (apikey APIKey) String() string {
+	return fmt.Sprintf(apikey.APIKeyID)
+}
+
 type Role struct {
 	RoleID      string
 	Description string
@@ -50,4 +56,8 @@ func (role *Role) GetPermissions() []string {
 
 func (role *Role) AddPermission(permission string) {
 	role.Permissions = append(role.Permissions, permission)
+}
+
+func (role *Role) String() string {
+	return fmt.Sprintf(role.RoleID, role.Description)
 }

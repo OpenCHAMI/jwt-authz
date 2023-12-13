@@ -7,8 +7,8 @@ import (
 	"log"
 )
 
-// generatePrivateKey creates a RSA Private Key of specified byte size
-func generatePrivateKey(bitSize int) (*rsa.PrivateKey, error) {
+// GeneratePrivateKey creates a RSA Private Key of specified byte size
+func GeneratePrivateKey(bitSize int) (*rsa.PrivateKey, error) {
 	// Private Key generation
 	privateKey, err := rsa.GenerateKey(rand.Reader, bitSize)
 	if err != nil {

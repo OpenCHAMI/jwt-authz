@@ -9,7 +9,7 @@ import (
 func TestGeneratePrivateKey(t *testing.T) {
 	bitSize := 2048
 
-	privateKey, err := generatePrivateKey(bitSize)
+	privateKey, err := GeneratePrivateKey(bitSize)
 	if err != nil {
 		t.Errorf("Failed to generate private key: %v", err)
 	}
@@ -36,7 +36,7 @@ func TestGeneratePrivateKey(t *testing.T) {
 func TestSignMessage(t *testing.T) {
 	bitSize := 2048
 
-	privateKey, err := generatePrivateKey(bitSize)
+	privateKey, err := GeneratePrivateKey(bitSize)
 	if err != nil {
 		t.Errorf("Failed to generate private key: %v", err)
 	}
@@ -54,7 +54,7 @@ func TestSignMessage(t *testing.T) {
 func TestVerifyPSSMessage(t *testing.T) {
 	bitSize := 2048
 
-	privateKey, err := generatePrivateKey(bitSize)
+	privateKey, err := GeneratePrivateKey(bitSize)
 	if err != nil {
 		t.Errorf("Failed to generate private key: %v", err)
 	}
