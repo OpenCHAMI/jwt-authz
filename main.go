@@ -50,7 +50,7 @@ func main() {
 	// Create an RSA issuer
 	var rsaIssuer = issuer.RSAIssuer{
 		IssuerURL: issuerURL,
-		RSAKey:    *privateKey,
+		RSAKey:    privateKey,
 	}
 
 	fmt.Println("Creating", Iterations, "API Keys that we can use.")
@@ -118,6 +118,11 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
+
+		//rsaTokenString, err := rsaIssuer.IssueTokenforAPIKey(myKey, "alovelltroy", tenant, region)
+		// if err != nil {
+		// 	fmt.Println(err)
+		// }
 		// Once we have a token, we can use it immediately.  If we want to understand what's inside, we can parse it.
 		// RSA signatures are based on a public/private key pair.  The issuer signs the token with the private key and the verifier verifies the signature with the public key.
 		// The public key can be shared with the verifier without compromising the security of the system.

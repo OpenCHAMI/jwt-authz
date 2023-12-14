@@ -3,9 +3,9 @@ package issuer
 import "fmt"
 
 type APIKey struct {
-	APIKeyID  string
-	APISecret string
-	Roles     []Role
+	APIKeyID  string `json:"key-id"`
+	APISecret string `json:"secret"`
+	Roles     []Role `json:"roles"`
 }
 
 func NewAPIKey(roles []Role) APIKey {
@@ -37,9 +37,9 @@ func (apikey APIKey) String() string {
 }
 
 type Role struct {
-	RoleID      string
-	Description string
-	Permissions []string
+	RoleID      string   `json:"id"`
+	Description string   `json:"desc"`
+	Permissions []string `json:"perms"`
 }
 
 func (role *Role) GetRoleID() string {
