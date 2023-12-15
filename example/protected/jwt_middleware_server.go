@@ -84,7 +84,7 @@ func (jv *JWTVerifier) JWTVerify(next echo.HandlerFunc) echo.HandlerFunc {
 			if header == "Authorization" {
 				// fmt.Println("Found Authorization Header:", values[0])
 
-				token, err := jwt.Parse(strings.TrimSpace(values[0]), func(token *jwt.Token) (interface{}, error) {
+				token, err := jwt.Parse(strings.Trim(strings.TrimSpace(values[0]), "\""), func(token *jwt.Token) (interface{}, error) {
 					return jv.PublicKey, nil
 				})
 				if err != nil {

@@ -8,6 +8,30 @@ When the gateway and mesh are both protecting microservices, it is possible to o
 
 This is a demonstration repo that does not ship any libararies or binaries.  Feel free to experiment with the software by building it yourself with `go build .` in the main source directory.
 
+## Running the demo applications
+
+There are two http echo servers included in the [example](/example/) directory.  The [issuer](/example/issuer/) acts as an issuer.  It creates an RSA keypair on startup and exposes three routes for generating API Keys, Tokens, and retrieving the RSA Public Key for verification.  The [other echo microservice](/example/protected/) verifies tokens and protects it's one route with a piece of middleware.
+
+Each is a single file that can be started with `go run <filename>`
+
+### Issuer Routes
+
+* `/apikey` generates an API Key which can be retrieved with curl `curl -o apikey.json  http://localhost:3333/apikey`
+* `token` uses the api key to generate a jwt.  The curl command should look like this: `export JWT=$(curl -X POST -d @apikey.json  http://localhost:3333/token)`
+* `/pubkey` exists to share the public key with the JWT Verifiers.  It returns the public key in PEM format
+
+### Protected JWT Demo Routes
+
+* `/protected` returns "Hello World!" when called with a valid token. Otherwise it returns 409 Unauthorized
+
+
+
+Call the `/protected` route on the second microservice using the token from the issuer. `curl -H "Authorization:$JWT" http://localhost:3334/protected`
+
+
+
+
+
 ##  JWT structure
 
 A JWT is simply a set of base64 encoded JSON objects separated by a '.'
